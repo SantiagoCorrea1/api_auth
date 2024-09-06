@@ -1,12 +1,16 @@
 package com.authb.api_auth.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Gender {
 
     @Id
@@ -15,12 +19,7 @@ public class Gender {
     private Long id;
     @Getter
     @Setter
-    private String gender;
+    private String name;
     @OneToMany (mappedBy = "gender")
     private List<User> users;
-    public Gender(String gender) {
-        this.gender = gender;
-    }
-    public Gender() {
-    }
 }

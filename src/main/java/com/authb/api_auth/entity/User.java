@@ -1,7 +1,9 @@
 package com.authb.api_auth.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,6 +11,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "userDb")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,21 +56,4 @@ public class User {
     @Getter
     @Setter
     private String password;
-
-    public User(IdType idType, String identificationNumber, City city, Gender gender, Role role, String firstName, String lastName, Date birthDate, String phoneNumber, String email, String password) {
-        this.idType = idType;
-        this.identificationNumber = identificationNumber;
-        this.city = city;
-        this.gender = gender;
-        this.role = role;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User() {
-    }
 }

@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-public class Country {
-
+@NoArgsConstructor
+public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -20,7 +19,10 @@ public class Country {
     @Getter
     @Setter
     private String name;
-    @OneToMany(mappedBy = "country")
-    private List<Province> provinces;
+    @Getter
+    @Setter
+    private String description;
 
+    @ManyToMany(mappedBy = "permissions")
+    private Set<Role> roles;
 }
