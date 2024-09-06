@@ -15,21 +15,21 @@ public class User {
     @Id
     @Getter
     private Long id;
-
     @Getter
-    @Setter
-
     @ManyToOne
     @JoinColumn (name = "idTypeId")
     private IdType idType;
     @ManyToOne
     @JoinColumn (name = "cityId")
+    @Getter
     private City city;
     @ManyToOne
     @JoinColumn(name = "genderId")
+    @Getter
     private Gender gender;
     @ManyToOne
     @JoinColumn(name = "roleId")
+    @Getter
     private Role role;
     @Getter
     @Setter

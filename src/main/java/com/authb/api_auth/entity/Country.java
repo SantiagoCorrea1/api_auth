@@ -11,11 +11,11 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
     @Getter
     @Setter
     private String name;
-    @Getter
     @OneToMany(mappedBy = "country")
     private List<Province> provinces;
 

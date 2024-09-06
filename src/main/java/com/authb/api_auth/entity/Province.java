@@ -10,14 +10,15 @@ import java.util.List;
 public class Province {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
     @ManyToOne
     @JoinColumn (name = "countryId")
+    @Getter
     private Country country;
     @Getter
     @Setter
     private String province;
-    @Getter
     @OneToMany (mappedBy = "province")
     private List<City>cities;
 }

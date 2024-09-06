@@ -10,6 +10,7 @@ import java.util.List;
 public class IdType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
     @Getter
     @Setter
