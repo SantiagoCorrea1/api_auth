@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class City {
 
     @Id
@@ -22,7 +21,16 @@ public class City {
     private String name;
     @OneToMany (mappedBy = "city")
     private List<User> users;
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn (name = "provinceId")
     private Province province;
+
+    public City(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
+
+

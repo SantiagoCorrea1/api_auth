@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class IdType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,13 @@ public class IdType {
     @Getter
     @Setter
     private String name;
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "idType")
     private List<User>users;
 
+    public IdType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

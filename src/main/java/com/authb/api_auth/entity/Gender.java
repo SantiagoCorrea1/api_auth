@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Gender {
 
     @Id
@@ -20,6 +19,13 @@ public class Gender {
     @Getter
     @Setter
     private String name;
+    @Getter
+    @Setter
     @OneToMany (mappedBy = "gender")
     private List<User> users;
+
+    public Gender(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

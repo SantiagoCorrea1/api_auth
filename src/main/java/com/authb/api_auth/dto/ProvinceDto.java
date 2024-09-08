@@ -1,11 +1,15 @@
 package com.authb.api_auth.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProvinceDto {
 
     private Long id;
@@ -14,12 +18,5 @@ public class ProvinceDto {
 
     private String provinceName;
 
-    public ProvinceDto() {
-    }
 
-    public ProvinceDto(Long id, String country, String province) {
-        this.id = id;
-        this.country = country;
-        this.provinceName = province;
-    }
 }

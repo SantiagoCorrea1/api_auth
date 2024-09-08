@@ -9,8 +9,8 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,9 @@ public class Permission {
     @Getter
     @Setter
     private String description;
-
+    @Getter
+    @Setter
     @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles;
+
 }

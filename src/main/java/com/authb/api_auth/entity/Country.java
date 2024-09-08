@@ -20,7 +20,10 @@ public class Country {
     @Getter
     @Setter
     private String name;
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "country")
     private List<Province> provinces;
+
 
 }
