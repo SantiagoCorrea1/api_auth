@@ -13,10 +13,10 @@ public class UserMapper {
     private static CityRepository cityRepository;
     private static RoleRepository roleRepository;
     public UserMapper(GenderRepository genderRepository, IdTypeRepository idTypeRepository, CityRepository cityRepository, RoleRepository roleRepository) {
-        this.genderRepository = genderRepository;
-        this.idTypeRepository = idTypeRepository;
-        this.cityRepository = cityRepository;
-        this.roleRepository = roleRepository;
+        UserMapper.genderRepository = genderRepository;
+        UserMapper.idTypeRepository = idTypeRepository;
+        UserMapper.cityRepository = cityRepository;
+        UserMapper.roleRepository = roleRepository;
     }
 
 

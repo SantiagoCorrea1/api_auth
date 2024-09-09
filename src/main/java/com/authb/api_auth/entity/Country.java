@@ -6,24 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "country")
-    private List<Province> provinces;
+    private Set<Province> provinces;
 
 
 }

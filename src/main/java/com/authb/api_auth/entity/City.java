@@ -7,29 +7,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
-    @Getter
-    @Setter
     private String name;
     @OneToMany (mappedBy = "city")
-    private List<User> users;
-    @Getter
-    @Setter
+    private Set<User> users;
     @ManyToOne
     @JoinColumn (name = "provinceId")
     private Province province;
 
-    public City(Long id, String name) {
+    public City(Long id, String name, Province province) {
         this.id = id;
         this.name = name;
+        this.province = province;
     }
 }
 

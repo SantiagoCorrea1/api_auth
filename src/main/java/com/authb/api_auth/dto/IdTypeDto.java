@@ -13,6 +13,6 @@ import lombok.Setter;
 public class IdTypeDto {
 
     private Long id;
-    private String type;
+    private String typeName;
 
 }

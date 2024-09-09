@@ -4,24 +4,23 @@ import com.authb.api_auth.dto.RoleDto;
 import com.authb.api_auth.entity.Permission;
 import com.authb.api_auth.entity.Role;
 import com.authb.api_auth.repository.PermissionRepository;
-import com.authb.api_auth.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class RolMapper {
 
-    private static RoleRepository roleRepository;
     private static PermissionRepository permissionRepository;
 
-    public RolMapper(RoleRepository roleRepository, PermissionRepository permissionRepository) {
-        this.roleRepository = roleRepository;
-        this.permissionRepository = permissionRepository;
+    public RolMapper(PermissionRepository permissionRepository){
+        RolMapper.permissionRepository = permissionRepository;
     }
 
+
     public static RoleDto toRoleDto(Role role){
-        Set<String>permissionNames = null;
+        Set<String>permissionNames = new HashSet<>();
         for (Permission permission: role.getPermissions()) {
             permissionNames.add(permission.getName());
         }
@@ -34,7 +33,7 @@ public class RolMapper {
     }
 
     public static Role toRole(RoleDto roleDto){
-        Set<Permission> permissions = null;
+        Set<Permission> permissions = new HashSet<>();
         for (String permissionName: roleDto.getPermissionNames()) {
             permissions.add(permissionRepository.findByName(permissionName).orElse(null));
         }

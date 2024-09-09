@@ -11,19 +11,14 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Permission {
+@Getter
+@Setter
+public class  Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String description;
-    @Getter
-    @Setter
     @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles;
 

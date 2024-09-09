@@ -5,24 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Province {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
+    private String name;
     @ManyToOne
     @JoinColumn (name = "countryId")
-    @Getter
     private Country country;
-    @Getter
-    @Setter
-    private String name;
     @OneToMany (mappedBy = "province")
-    private List<City>cities;
+    private Set<City> cities;
 }

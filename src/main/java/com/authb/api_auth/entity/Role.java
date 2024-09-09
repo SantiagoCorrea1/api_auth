@@ -1,7 +1,6 @@
 package com.authb.api_auth.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,23 +10,16 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String description;
     @OneToMany(mappedBy = "role")
     private List<User> users;
-
-    @Getter
-    @Setter
     @ManyToMany
     @JoinTable(
             name = "role_permission",
