@@ -1,4 +1,4 @@
-package com.authb.api_auth.mapper;
+package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.CityDto;
 import com.authb.api_auth.entity.City;
@@ -6,12 +6,12 @@ import com.authb.api_auth.repository.ProvinceRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CityMapper {
+public class CityService {
 
     private static ProvinceRepository provinceRepository;
 
-    public CityMapper(ProvinceRepository provinceRepository) {
-        CityMapper.provinceRepository = provinceRepository;
+    public CityService(ProvinceRepository provinceRepository) {
+        CityService.provinceRepository = provinceRepository;
     }
 
     public CityDto toCityDto(City city) {

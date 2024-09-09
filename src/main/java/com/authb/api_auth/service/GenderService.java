@@ -1,11 +1,11 @@
-package com.authb.api_auth.mapper;
+package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.GenderDto;
 import com.authb.api_auth.entity.Gender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenderMapper {
+public class GenderService {
 
     public static GenderDto toGenderDto(Gender gender){
         return new GenderDto(

@@ -1,4 +1,4 @@
-package com.authb.api_auth.mapper;
+package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.CountryDto;
 import com.authb.api_auth.entity.Country;
@@ -10,12 +10,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class CountryMapper {
+public class CountryService {
 
     private static ProvinceRepository provinceRepository;
 
-    public CountryMapper(ProvinceRepository provinceRepository) {
-        CountryMapper.provinceRepository = provinceRepository;
+    public CountryService(ProvinceRepository provinceRepository) {
+        CountryService.provinceRepository = provinceRepository;
     }
 
     public static CountryDto toCountryDtoCountryDto (Country country){

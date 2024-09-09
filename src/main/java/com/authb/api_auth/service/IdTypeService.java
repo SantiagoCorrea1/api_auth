@@ -1,11 +1,11 @@
-package com.authb.api_auth.mapper;
+package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.IdTypeDto;
 import com.authb.api_auth.entity.IdType;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IdTypeMapper {
+public class IdTypeService {
     public IdTypeDto toIdTypeDto(IdType idType) {
         return new IdTypeDto(idType.getId(), idType.getName());
     }

@@ -1,4 +1,4 @@
-package com.authb.api_auth.mapper;
+package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.PermissionDto;
 import com.authb.api_auth.entity.Permission;
@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class PermissionMapper {
+public class PermissionService {
 
     private static RoleRepository roleRepository;
-    public PermissionMapper(RoleRepository roleRepository){
-        PermissionMapper.roleRepository = roleRepository;
+    public PermissionService(RoleRepository roleRepository){
+        PermissionService.roleRepository = roleRepository;
     }
 
     public static PermissionDto toPermissionDto(Permission permission){
