@@ -2,21 +2,28 @@ package com.authb.api_auth.service;
 
 import com.authb.api_auth.dto.UserDto;
 import com.authb.api_auth.entity.User;
+import com.authb.api_auth.interfaces.UserInterface;
 import com.authb.api_auth.repository.*;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements UserInterface {
 
     private static GenderRepository genderRepository;
     private static IdTypeRepository idTypeRepository;
     private static CityRepository cityRepository;
     private static RoleRepository roleRepository;
-    public UserService(GenderRepository genderRepository, IdTypeRepository idTypeRepository, CityRepository cityRepository, RoleRepository roleRepository) {
+
+    private static UserRepository userRepository;
+
+
+
+    public UserService(GenderRepository genderRepository, IdTypeRepository idTypeRepository, CityRepository cityRepository, RoleRepository roleRepository, UserRepository userRepository) {
         UserService.genderRepository = genderRepository;
         UserService.idTypeRepository = idTypeRepository;
         UserService.cityRepository = cityRepository;
         UserService.roleRepository = roleRepository;
+        UserService.userRepository = userRepository;
     }
 
 
@@ -39,10 +46,10 @@ public class UserService {
     public static User toUser(UserDto userDto) {
         return new User(
                 userDto.getId(),
-                idTypeRepository.findByName(userDto.getIdTypeName()).orElseThrow(null) ,
-                cityRepository.findByName(userDto.getCityName()).orElseThrow(null) ,
-                genderRepository.findByName(userDto.getGenderName()).orElseThrow(null),
-                roleRepository.findByName(userDto.getRoleName()).orElseThrow(null),
+                idTypeRepository.findByName(userDto.getIdTypeName()).orElse(null) ,
+                cityRepository.findByName(userDto.getCityName()).orElse(null) ,
+                genderRepository.findByName(userDto.getGenderName()).orElse(null),
+                roleRepository.findByName(userDto.getRoleName()).orElse(null),
                 userDto.getIdentificationNumber(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
@@ -51,5 +58,9 @@ public class UserService {
                 userDto.getEmail(),
                 userDto.getPassword()
         );
+    }
+    @Override
+    public User SignUp(UserDto userDto) {
+        return userRepository.save(toUser(userDto));
     }
 }
