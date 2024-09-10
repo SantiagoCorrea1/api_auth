@@ -1,0 +1,39 @@
+type Query {
+    userById(id: ID!): User
+}
+
+type User{
+    id: ID,
+    idType: Int!
+    city: Int!
+    gender: Int!
+    role: Int!
+    identificationNumber: String!
+    firstName: String!
+    lastName: String!
+    birthDate: Date!
+    phoneNumber: String!
+    email: String!
+    password: String!
+}
+
+scalar Date
+
+input singUpInput{
+        id: ID
+        idType: Int!
+        city: Int!
+        gender: Int!
+        role: Int!
+        identificationNumber: String!
+        firstName: String!
+        lastName: String!
+        birthDate: Date!
+        phoneNumber: String!
+        email: String!
+        password: String!
+}
+
+type Mutation {
+    singUp(input: singUpInput!): User!
+}
