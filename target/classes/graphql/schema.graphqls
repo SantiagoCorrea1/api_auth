@@ -4,36 +4,36 @@ type Query {
 
 type User{
     id: ID,
-    idType: Int!
-    city: Int!
-    gender: Int!
-    role: Int!
+    idType: String!
+    city: String!
+    gender: String!
+    role: String!
     identificationNumber: String!
     firstName: String!
     lastName: String!
-    birthDate: Date!
+    birthDate: String!
     phoneNumber: String!
     email: String!
     password: String!
 }
 
-scalar Date
+#scalar Date
 
-input singUpInput{
+input signUpInput{
         id: ID
-        idType: Int!
-        city: Int!
-        gender: Int!
-        role: Int!
+        idType: String!
+        city: String!
+        gender: String!
+        role: String!
         identificationNumber: String!
         firstName: String!
         lastName: String!
-        birthDate: Date!
+        birthDate: String!
         phoneNumber: String!
         email: String!
         password: String!
 }
 
 type Mutation {
-    singUp(input: singUpInput!): User!
+    signUp(input: signUpInput!): User!
 }

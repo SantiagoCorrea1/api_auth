@@ -39,8 +39,7 @@ public class UserService implements UserInterface {
                 user.getBirthDate(),
                 user.getPhoneNumber(),
                 user.getEmail(),
-                user.getPassword(),
-                user.getUrl_avatar()
+                user.getPassword()
         );
     }
     public static User toUser(UserDto userDto) {
@@ -56,8 +55,7 @@ public class UserService implements UserInterface {
                 userDto.getBirthDate(),
                 userDto.getPhoneNumber(),
                 userDto.getEmail(),
-                userDto.getPassword(),
-                userDto.getUrl_avatar()
+                userDto.getPassword()
         );
     }
     @Override

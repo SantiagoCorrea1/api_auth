@@ -6,9 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Entity
 @Table(name = "userDb")
 @AllArgsConstructor
@@ -34,9 +31,8 @@ public class User {
     private String identificationNumber;
     private String firstName;
     private String lastName;
-    private LocalDate birthDate;
+    private String birthDate;
     private String phoneNumber;
     private String email;
     private String password;
-    private String url_avatar;
 }
