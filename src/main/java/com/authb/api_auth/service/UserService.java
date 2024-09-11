@@ -13,7 +13,6 @@ public class UserService implements UserInterface {
     private static IdTypeRepository idTypeRepository;
     private static CityRepository cityRepository;
     private static RoleRepository roleRepository;
-
     private static UserRepository userRepository;
 
 
@@ -40,7 +39,8 @@ public class UserService implements UserInterface {
                 user.getBirthDate(),
                 user.getPhoneNumber(),
                 user.getEmail(),
-                user.getPassword()
+                user.getPassword(),
+                user.getUrl_avatar()
         );
     }
     public static User toUser(UserDto userDto) {
@@ -56,11 +56,17 @@ public class UserService implements UserInterface {
                 userDto.getBirthDate(),
                 userDto.getPhoneNumber(),
                 userDto.getEmail(),
-                userDto.getPassword()
+                userDto.getPassword(),
+                userDto.getUrl_avatar()
         );
     }
     @Override
     public User SignUp(UserDto userDto) {
         return userRepository.save(toUser(userDto));
     }
+
+    public User findById(Long id){
+        return (userRepository.findById(id).orElse(null));
+    }
+
 }

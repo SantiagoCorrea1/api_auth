@@ -7,5 +7,6 @@ import com.authb.api_auth.repository.UserRepository;
 public interface UserInterface {
 
     User SignUp(UserDto userDto);
+    User findById(Long id);
 
 }
