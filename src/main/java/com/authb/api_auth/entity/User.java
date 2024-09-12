@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "userDb")
+@Table(name = "person")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,25 +15,34 @@ import lombok.Setter;
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "user_id")
     private Long id;
     @ManyToOne
-    @JoinColumn (name = "idTypeId")
+    @JoinColumn (name = "identification_type_id")
     private IdType idType;
     @ManyToOne
-    @JoinColumn (name = "cityId")
+    @JoinColumn (name = "city_id")
     private City city;
     @ManyToOne
-    @JoinColumn(name = "genderId")
+    @JoinColumn(name = "gender_id")
     private Gender gender;
     @ManyToOne
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "role_id")
     private Role role;
+    @Column(name = "identification_number")
     private String identificationNumber;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "birth_date")
     private String birthDate;
+    @Column(name = "phone_number")
     private String phoneNumber;
+    @Column(name = "mail")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "url_avatar")
     private String avatarUrl;
 }

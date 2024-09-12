@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
+@Table (name = "country")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -17,7 +18,9 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "country_id")
     private Long id;
+    @Column (name = "country_name")
     private String name;
     @OneToMany(mappedBy = "country")
     private Set<Province> provinces;
