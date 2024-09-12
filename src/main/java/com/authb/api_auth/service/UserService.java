@@ -4,8 +4,7 @@ import com.authb.api_auth.dto.UserDto;
 import com.authb.api_auth.entity.User;
 import com.authb.api_auth.interfaces.UserInterface;
 import com.authb.api_auth.repository.*;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,7 +41,8 @@ public class UserService implements UserInterface {
                 user.getPhoneNumber(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getAvatarUrl()
+                user.getAvatarUrl(),
+                user.getAddress()
         );
     }
     public static User toUser(UserDto userDto) {
@@ -59,7 +59,8 @@ public class UserService implements UserInterface {
                 userDto.getPhoneNumber(),
                 userDto.getEmail(),
                 userDto.getPassword(),
-                userDto.getAvatarUrl()
+                userDto.getAvatarUrl(),
+                userDto.getAddress()
         );
     }
     @Override

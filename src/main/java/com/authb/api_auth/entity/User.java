@@ -39,10 +39,12 @@ public class User {
     private String birthDate;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "mail")
+    @Column(name = "mail", unique = true)
     private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "url_avatar")
     private String avatarUrl;
+    @Column (name = "address")
+    private String address;
 }
