@@ -12,10 +12,10 @@ import lombok.Setter;
 public class UserDto {
 
     private Long id;
-    private String idTypeName;
-    private String cityName;
-    private String genderName;
-    private String roleName;
+    private Long idTypeName;
+    private Long cityName;
+    private Long genderName;
+    private Long roleName;
     private String identificationNumber;
     private String firstName;
     private String lastName;
@@ -23,4 +23,5 @@ public class UserDto {
     private String phoneNumber;
     private String email;
     private String password;
+    private String avatarUrl;
 }

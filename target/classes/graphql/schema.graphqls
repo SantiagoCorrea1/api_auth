@@ -4,10 +4,10 @@ type Query {
 
 type User{
     id: ID,
-    idType: String!
-    city: String!
-    gender: String!
-    role: String!
+    idType: Int!
+    city: Int!
+    gender: Int!
+    role: Int!
     identificationNumber: String!
     firstName: String!
     lastName: String!
@@ -21,10 +21,10 @@ type User{
 
 input signUpInput{
         id: ID
-        idType: String!
-        city: String!
-        gender: String!
-        role: String!
+        idType: Int!
+        city: Int!
+        gender: Int!
+        role: Int!
         identificationNumber: String!
         firstName: String!
         lastName: String!

@@ -4,6 +4,8 @@ import com.authb.api_auth.dto.UserDto;
 import com.authb.api_auth.entity.User;
 import com.authb.api_auth.interfaces.UserInterface;
 import com.authb.api_auth.repository.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,33 +31,35 @@ public class UserService implements UserInterface {
     public static UserDto toUserDto(User user) {
         return new UserDto(
                 user.getId(),
-                user.getIdType().getName(),
-                user.getCity().getName(),
-                user.getGender().getName(),
-                user.getRole().getName(),
+                user.getId(),
+                user.getId(),
+                user.getId(),
+                user.getId(),
                 user.getIdentificationNumber(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getBirthDate(),
                 user.getPhoneNumber(),
                 user.getEmail(),
-                user.getPassword()
+                user.getPassword(),
+                user.getAvatarUrl()
         );
     }
     public static User toUser(UserDto userDto) {
         return new User(
                 userDto.getId(),
-                idTypeRepository.findByName(userDto.getIdTypeName()).orElse(null) ,
-                cityRepository.findByName(userDto.getCityName()).orElse(null) ,
-                genderRepository.findByName(userDto.getGenderName()).orElse(null),
-                roleRepository.findByName(userDto.getRoleName()).orElse(null),
+                idTypeRepository.findById(userDto.getId()).orElse(null) ,
+                cityRepository.findById(userDto.getId()).orElse(null) ,
+                genderRepository.findById(userDto.getId()).orElse(null),
+                roleRepository.findById(userDto.getId()).orElse(null),
                 userDto.getIdentificationNumber(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getBirthDate(),
                 userDto.getPhoneNumber(),
                 userDto.getEmail(),
-                userDto.getPassword()
+                userDto.getPassword(),
+                userDto.getAvatarUrl()
         );
     }
     @Override
