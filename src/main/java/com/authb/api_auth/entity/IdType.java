@@ -8,13 +8,16 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
+@Table(name = "identificationType")
 @NoArgsConstructor
 @Getter
 @Setter
 public class IdType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "identification_type_id")
     private Long id;
+    @Column (name = "identification_type")
     private String name;
     @OneToMany(mappedBy = "idType")
     private Set<User> users;

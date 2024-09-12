@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "city")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,12 +18,14 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="city_id")
     private Long id;
+    @Column(name="city_name")
     private String name;
     @OneToMany (mappedBy = "city")
     private Set<User> users;
     @ManyToOne
-    @JoinColumn (name = "provinceId")
+    @JoinColumn (name = "province_id")
     private Province province;
 
     public City(Long id, String name, Province province) {

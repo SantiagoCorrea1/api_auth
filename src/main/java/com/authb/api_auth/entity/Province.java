@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
+@Table (name="province")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -15,10 +16,12 @@ import java.util.Set;
 public class Province {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "province_id")
     private Long id;
+    @Column (name = "province_name")
     private String name;
     @ManyToOne
-    @JoinColumn (name = "countryId")
+    @JoinColumn (name = "country_id")
     private Country country;
     @OneToMany (mappedBy = "province")
     private Set<City> cities;
