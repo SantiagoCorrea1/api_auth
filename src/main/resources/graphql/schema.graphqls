@@ -3,11 +3,11 @@ type Query {
 }
 
 type User{
-    id: ID,
-    idType: Int!
-    city: Int!
-    gender: Int!
-    role: Int!
+    id: Int,
+    idType: IdType!
+    city: City!
+    gender: Gender!
+    role: Role!
     identificationNumber: String!
     firstName: String!
     lastName: String!
@@ -19,7 +19,6 @@ type User{
     address: String!
 }
 
-#scalar Date
 
 input signUpInput{
         id: ID
@@ -39,5 +38,54 @@ input signUpInput{
 }
 
 type Mutation {
-    signUp(input: signUpInput!): User!
+    signUp(input: signUpInput!): User
+}
+
+
+
+type Role {
+    id: ID!
+    name: String!
+    description: String
+    users: [User] # Relación OneToMany con User
+    permissions: [Permission] # Relación ManyToMany con Permission
+}
+
+type Province {
+    id: ID!
+    name: String!
+    country: Country # Relación ManyToOne con Country
+    cities: [City] # Relación OneToMany con City
+}
+
+type Permission {
+    id: ID!
+    name: String!
+    description: String
+    roles: [Role] # Relación ManyToMany con Role
+}
+
+type IdType {
+    id: ID!
+    name: String!
+    users: [User] # Relación OneToMany con User
+}
+
+type Gender {
+    id: ID!
+    name: String!
+    users: [User] # Relación OneToMany con User
+}
+
+type Country {
+    id: ID!
+    name: String!
+    provinces: [Province] # Relación OneToMany con Province
+}
+
+type City {
+    id: ID!
+    name: String!
+    users: [User] # Relación OneToMany con User
+    province: Province # Relación ManyToOne con Province
 }

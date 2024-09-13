@@ -1,21 +1,19 @@
 package com.authb.api_auth.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
 
     private Long id;
-    private Long idTypeName;
-    private Long cityName;
-    private Long genderName;
-    private Long roleName;
+    private Integer idType;
+    private Integer city;
+    private Integer gender;
+    private Integer role;
     private String identificationNumber;
     private String firstName;
     private String lastName;

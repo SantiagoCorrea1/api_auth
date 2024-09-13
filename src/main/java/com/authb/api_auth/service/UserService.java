@@ -30,10 +30,10 @@ public class UserService implements UserInterface {
     public static UserDto toUserDto(User user) {
         return new UserDto(
                 user.getId(),
-                user.getId(),
-                user.getId(),
-                user.getId(),
-                user.getId(),
+                Math.toIntExact(user.getIdType().getId()),
+                Math.toIntExact(user.getCity().getId()),
+                Math.toIntExact(user.getGender().getId()),
+                Math.toIntExact(user.getRole().getId()),
                 user.getIdentificationNumber(),
                 user.getFirstName(),
                 user.getLastName(),
@@ -45,13 +45,14 @@ public class UserService implements UserInterface {
                 user.getAddress()
         );
     }
-    public static User toUser(UserDto userDto) {
+    public User toUser(UserDto userDto) {
+        System.out.println(userDto.toString());
         return new User(
                 userDto.getId(),
-                idTypeRepository.findById(userDto.getId()).orElse(null) ,
-                cityRepository.findById(userDto.getId()).orElse(null) ,
-                genderRepository.findById(userDto.getId()).orElse(null),
-                roleRepository.findById(userDto.getId()).orElse(null),
+                idTypeRepository.findById(Long.valueOf(userDto.getIdType())).orElse(null) ,
+                cityRepository.findById(Long.valueOf(userDto.getCity())).orElse(null) ,
+                genderRepository.findById(Long.valueOf(userDto.getGender())).orElse(null),
+                roleRepository.findById(Long.valueOf(userDto.getRole())).orElse(null),
                 userDto.getIdentificationNumber(),
                 userDto.getFirstName(),
                 userDto.getLastName(),

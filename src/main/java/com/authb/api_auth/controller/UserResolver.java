@@ -25,6 +25,7 @@ public class UserResolver implements GraphQLMutationResolver {
 
     @MutationMapping
     public User signUp(@Argument("input") UserDto userDto) {
+
         return userService.SignUp(userDto);
     }
 }
