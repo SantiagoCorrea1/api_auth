@@ -19,6 +19,9 @@ type User{
     address: String!
 }
 
+type Token{
+    token: String
+}
 
 input signUpInput{
         id: ID
@@ -37,11 +40,15 @@ input signUpInput{
         address: String!
 }
 
-type Mutation {
-    signUp(input: signUpInput!): User
+input singInInput{
+    email: String,
+    password: String
 }
 
-
+type Mutation {
+    signUp(input: signUpInput!): User,
+    SingIn(input: singInInput!): Token
+}
 
 type Role {
     id: ID!
@@ -89,3 +96,4 @@ type City {
     users: [User] # Relación OneToMany con User
     province: Province # Relación ManyToOne con Province
 }
+

@@ -5,10 +5,17 @@ import com.authb.api_auth.entity.User;
 import com.authb.api_auth.interfaces.UserInterface;
 import com.authb.api_auth.repository.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
-public class UserService implements UserInterface {
+public class UserService implements UserInterface, UserDetailsService {
 
     private static GenderRepository genderRepository;
     private static IdTypeRepository idTypeRepository;
@@ -16,14 +23,17 @@ public class UserService implements UserInterface {
     private static RoleRepository roleRepository;
     private static UserRepository userRepository;
 
+    private static PasswordEncoder passwordEncoder;
 
 
-    public UserService(GenderRepository genderRepository, IdTypeRepository idTypeRepository, CityRepository cityRepository, RoleRepository roleRepository, UserRepository userRepository) {
+    public UserService(GenderRepository genderRepository, IdTypeRepository idTypeRepository, CityRepository cityRepository
+            , RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         UserService.genderRepository = genderRepository;
         UserService.idTypeRepository = idTypeRepository;
         UserService.cityRepository = cityRepository;
         UserService.roleRepository = roleRepository;
         UserService.userRepository = userRepository;
+        UserService.passwordEncoder = passwordEncoder;
     }
 
 
@@ -59,7 +69,7 @@ public class UserService implements UserInterface {
                 userDto.getBirthDate(),
                 userDto.getPhoneNumber(),
                 userDto.getEmail(),
-                userDto.getPassword(),
+                passwordEncoder.encode(userDto.getPassword()),
                 userDto.getAvatarUrl(),
                 userDto.getAddress()
         );
@@ -73,4 +83,10 @@ public class UserService implements UserInterface {
         return (userRepository.findById(id).orElse(null));
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findFirstByEmail(email);
+        if (user == null) throw new UsernameNotFoundException("email not found", null);
+        return  new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+    }
 }
