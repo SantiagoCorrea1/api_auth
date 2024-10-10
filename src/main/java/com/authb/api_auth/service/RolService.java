@@ -4,6 +4,7 @@ import com.authb.api_auth.dto.RoleDto;
 import com.authb.api_auth.entity.Permission;
 import com.authb.api_auth.entity.Role;
 import com.authb.api_auth.repository.PermissionRepository;
+import com.authb.api_auth.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -13,9 +14,15 @@ import java.util.Set;
 public class RolService {
 
     private static PermissionRepository permissionRepository;
+    private static RoleRepository roleRepository;
 
-    public RolService(PermissionRepository permissionRepository){
+    public RolService(PermissionRepository permissionRepository, RoleRepository roleRepository){
         RolService.permissionRepository = permissionRepository;
+        RolService.roleRepository = roleRepository;
+    }
+
+    public static Role findById(Long id) {
+        return roleRepository.findById(id).orElse(null);
     }
 
 

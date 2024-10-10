@@ -69,8 +69,15 @@ public class UserService implements UserInterface {
         return userRepository.save(toUser(userDto));
     }
 
+    public User UpdateUser(User user) {
+        return userRepository.save(user);
+    }
+
     public User findById(Long id){
         return (userRepository.findById(id).orElse(null));
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findFirstByEmail(email).orElse(null);
+    }
 }
