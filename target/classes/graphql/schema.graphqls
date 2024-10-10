@@ -1,5 +1,6 @@
 type Query {
     userById(id: ID!): User
+    userByEmail(email: String!): User
 }
 
 type User{
@@ -39,6 +40,7 @@ input signUpInput{
 
 type Mutation {
     signUp(input: signUpInput!): User
+    modifyRole(email: String!, roleId: ID!): User
 }
 
 
