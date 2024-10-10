@@ -19,10 +19,7 @@ public class RolService {
     public RolService(PermissionRepository permissionRepository, RoleRepository roleRepository){
         RolService.permissionRepository = permissionRepository;
         RolService.roleRepository = roleRepository;
-    }
 
-    public static Role findById(Long id) {
-        return roleRepository.findById(id).orElse(null);
     }
 
 
@@ -50,5 +47,9 @@ public class RolService {
                 roleDto.getDescription(),
                 permissions
         );
+    }
+
+    public static Role findById(Long id) {
+        return roleRepository.findById(id).orElse(null);
     }
 }

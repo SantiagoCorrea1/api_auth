@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 type Query {
     userById(id: ID!): User
     userByEmail(email: String!): User
 }
+=======
+>>>>>>> 37edaab9facb931bca032a399bb27f7989a38751
 
 type User{
     id: Int,
@@ -20,6 +23,9 @@ type User{
     address: String!
 }
 
+type Token{
+    token: String!
+}
 
 input signUpInput{
         id: ID
@@ -38,12 +44,27 @@ input signUpInput{
         address: String!
 }
 
+<<<<<<< HEAD
 type Mutation {
     signUp(input: signUpInput!): User
     modifyRole(email: String!, roleId: ID!): User
+=======
+input singInInput{
+    email: String,
+    password: String
+>>>>>>> 37edaab9facb931bca032a399bb27f7989a38751
 }
 
+type Query {
+    userById(id: ID!): User
+    userByEmail(email: String!): User
+}
 
+type Mutation {
+    signUp(input: signUpInput!): User,
+    SingIn(input: singInInput!): Token,
+    modifyRole(email: String!, roleId: ID!): User
+}
 
 type Role {
     id: ID!
@@ -91,3 +112,4 @@ type City {
     users: [User] # Relación OneToMany con User
     province: Province # Relación ManyToOne con Province
 }
+

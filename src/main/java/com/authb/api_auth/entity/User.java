@@ -29,7 +29,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-    @Column(name = "identification_number")
+    @Column(name = "identification_number", unique = true)
     private String identificationNumber;
     @Column(name = "first_name")
     private String firstName;
@@ -37,7 +37,7 @@ public class User {
     private String lastName;
     @Column(name = "birth_date")
     private String birthDate;
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
     @Column(name = "mail", unique = true)
     private String email;
