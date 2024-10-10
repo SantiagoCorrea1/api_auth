@@ -2,6 +2,7 @@ package com.authb.api_auth.controller;
 
 import com.authb.api_auth.dto.AuthenticationRequest;
 import com.authb.api_auth.dto.UserDto;
+import com.authb.api_auth.entity.Role;
 import com.authb.api_auth.entity.User;
 import com.authb.api_auth.repository.UserRepository;
 import com.authb.api_auth.service.UserService;
@@ -63,7 +64,7 @@ public class UserResolver implements GraphQLMutationResolver {
              throw new BadCredentialsException("UserName or password incorrect", e);
         }
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getEmail());
-        User user = userRepository.findFirstByEmail(userDetails.getUsername());
+        User user = userRepository.findFirstByEmail(userDetails.getUsername()).orElse(null);
 
         final String jwt = jwtUtil.generateToken(userDetails.getUsername(),user.getId());
 
@@ -77,6 +78,26 @@ public class UserResolver implements GraphQLMutationResolver {
 
         response.addHeader(HEADER_STRING, TOKEN_PREFIX+jwt);
 
+
+        }
+
+    @PermitAll
+    @QueryMapping
+    public User userByEmail(@Argument String email) {
+        return userService.findByEmail(email);
     }
+
+    @PermitAll
+    @MutationMapping
+    public User modifyRole(@Argument String email,
+                           @Argument() Long roleId) {
+
+        User user = userService.findByEmail(email);
+        Role role = com.authb.api_auth.service.RolService.findById(roleId);
+        user.setRole(role);
+        return userService.updateUser(user);
+    }
+
+
 
 }

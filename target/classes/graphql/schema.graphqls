@@ -1,6 +1,3 @@
-type Query {
-    userById(id: ID!): User
-}
 
 type User{
     id: Int,
@@ -45,9 +42,15 @@ input singInInput{
     password: String
 }
 
+type Query {
+    userById(id: ID!): User
+    userByEmail(email: String!): User
+}
+
 type Mutation {
     signUp(input: signUpInput!): User,
-    SingIn(input: singInInput!): Token
+    SingIn(input: singInInput!): Token,
+    modifyRole(email: String!, roleId: ID!): User
 }
 
 type Role {

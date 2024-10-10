@@ -83,10 +83,17 @@ public class UserService implements UserInterface, UserDetailsService {
         return (userRepository.findById(id).orElse(null));
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findFirstByEmail(email).orElse(null);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findFirstByEmail(email);
+        User user = userRepository.findFirstByEmail(email).orElse(null);
         if (user == null) throw new UsernameNotFoundException("email not found", null);
         return  new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+    }
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
 }
