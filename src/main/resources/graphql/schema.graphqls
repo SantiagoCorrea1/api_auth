@@ -37,7 +37,7 @@ input signUpInput{
         address: String!
 }
 
-input singInInput{
+input signInInput{
     email: String,
     password: String
 }
@@ -49,7 +49,7 @@ type Query {
 
 type Mutation {
     signUp(input: signUpInput!): User,
-    SingIn(input: singInInput!): Token,
+    signIn(input: signInInput!): String,
     modifyRole(email: String!, roleId: ID!): User
 }
 
