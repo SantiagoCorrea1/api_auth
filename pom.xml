@@ -112,6 +112,45 @@
 				<version>1.61.5</version>
 				<executions>
 					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaPaths>
+						<schemaPath>src/main/resources/graphql/schema.graphqls</schemaPath>
+					</schemaPaths>
+					<outputDir>src/main/generated</outputDir>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.10</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.github.deweyjose</groupId>
+				<artifactId>graphqlcodegen-maven-plugin</artifactId>
+				<version>1.61.5</version>
+				<executions>
+					<execution>
 						<id>dgs-codegen</id>
 						<goals>
 							<goal>generate</goal>
