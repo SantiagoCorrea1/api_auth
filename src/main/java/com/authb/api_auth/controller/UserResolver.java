@@ -87,7 +87,7 @@ public class UserResolver implements GraphQLMutationResolver {
     @PermitAll
     @MutationMapping
     public User modifyRole(@Argument String email,
-                           @Argument() Long roleId) {
+                           @Argument Long roleId) {
 
         User user = userService.findByEmail(email);
         Role role = com.authb.api_auth.service.RolService.findById(roleId);
