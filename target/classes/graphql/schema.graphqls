@@ -45,11 +45,15 @@ input signUpInput{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 type Mutation {
     signUp(input: signUpInput!): User
     modifyRole(email: String!, roleId: ID!): User
 =======
 input singInInput{
+=======
+input signInInput{
+>>>>>>> da40f72d3b0a00ee652927207041ea40a07743f0
     email: String,
     password: String
 >>>>>>> 37edaab9facb931bca032a399bb27f7989a38751
@@ -62,7 +66,7 @@ type Query {
 
 type Mutation {
     signUp(input: signUpInput!): User,
-    SingIn(input: singInInput!): Token,
+    signIn(input: signInInput!): String,
     modifyRole(email: String!, roleId: ID!): User
 }
 
