@@ -39,7 +39,7 @@ public class UserResolver implements GraphQLMutationResolver {
         this.userRepository = userRepository;
     }
 
-    @PreAuthorize("hasAuthority('ROL_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @QueryMapping
     public User userById(@Argument Long id) {
         return userService.findById(id);
