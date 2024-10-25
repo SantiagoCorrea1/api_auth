@@ -6,14 +6,12 @@ import com.authb.api_auth.entity.Role;
 import com.authb.api_auth.entity.User;
 import com.authb.api_auth.repository.UserRepository;
 import com.authb.api_auth.service.UserService;
-
 import com.authb.api_auth.util.JwtUtil;
 import graphql.GraphQLException;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import jakarta.annotation.security.PermitAll;
 import org.json.JSONException;
 import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.Arguments;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +26,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserResolver implements GraphQLMutationResolver {
     private final UserService userService;
-
     final AuthenticationManager authenticationManager;
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String HEADER_STRING = "Authorization";
@@ -42,6 +39,7 @@ public class UserResolver implements GraphQLMutationResolver {
         this.userRepository = userRepository;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @QueryMapping
     public User userById(@Argument Long id) {
         return userService.findById(id);
@@ -50,6 +48,7 @@ public class UserResolver implements GraphQLMutationResolver {
     @PermitAll
     @MutationMapping
     public User signUp(@Argument("input") UserDto userDto) {
+
         return userService.SignUp(userDto);
     }
 
