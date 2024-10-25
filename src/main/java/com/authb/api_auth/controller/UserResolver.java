@@ -1,5 +1,8 @@
 package com.authb.api_auth.controller;
 
+import static com.authb.api_auth.util.PasswordUtil.isPasswordValid;
+
+
 import com.authb.api_auth.dto.AuthenticationRequest;
 import com.authb.api_auth.dto.UserDto;
 import com.authb.api_auth.entity.Role;
@@ -7,6 +10,7 @@ import com.authb.api_auth.entity.User;
 import com.authb.api_auth.repository.UserRepository;
 import com.authb.api_auth.service.UserService;
 import com.authb.api_auth.util.JwtUtil;
+import com.authb.api_auth.response.SignUpResponse;
 import graphql.GraphQLException;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import jakarta.annotation.security.PermitAll;
@@ -47,9 +51,16 @@ public class UserResolver implements GraphQLMutationResolver {
 
     @PermitAll
     @MutationMapping
-    public User signUp(@Argument("input") UserDto userDto) {
+    public SignUpResponse signUp(@Argument("input") UserDto userDto) {
 
-        return userService.SignUp(userDto);
+        if (!isPasswordValid(userDto.getPassword())) {
+            // Return a custom error message in case of invalid password
+            return new SignUpResponse(null, "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        }
+
+        // Proceed with the sign-up process and return a success response
+        User user = userService.SignUp(userDto);
+        return new SignUpResponse(user, null);
     }
 
     @PermitAll

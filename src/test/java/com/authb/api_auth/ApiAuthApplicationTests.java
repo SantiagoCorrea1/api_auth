@@ -31,7 +31,7 @@ class ApiAuthApplicationTests {
 	void successfulSingUp(){
 		UserDto userDto = new UserDto( null,1,1,1,1,"1","santiago", "correa"
 				, "2000-05-07", "a", "a", "a", "a", "a");
-		user = userResolver.signUp(userDto);
+		user = userResolver.signUp(userDto).getUser();
 		assertEquals(userDto.getEmail(), user.getEmail());
 
 		userRepository.delete(user);

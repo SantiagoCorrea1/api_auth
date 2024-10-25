@@ -49,9 +49,14 @@ type Query {
 }
 
 type Mutation {
-    signUp(input: signUpInput!): User,
+    signUp(input: signUpInput!): SignUpResponse,
     signIn(input: signInInput!): String,
     modifyRole(email: String!, roleId: ID!): User
+}
+
+type SignUpResponse {
+    user: User
+    errorMessage: String
 }
 
 type Role {
