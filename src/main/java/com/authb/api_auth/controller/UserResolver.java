@@ -120,7 +120,7 @@ public class UserResolver implements GraphQLMutationResolver {
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getEmail());
         User user = userRepository.findFirstByEmail(userDetails.getUsername()).orElse(null);
 
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername(), user.getId());
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(), user.getId(), user.getRole().getId());
 
         return jwt;
     }
