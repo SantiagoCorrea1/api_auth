@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 public class SignUpResponse {
 
     private User user;
-    private String errorMessage;
+    private String message;
 
-    public SignUpResponse(User user, String errorMessage) {
+    public SignUpResponse(User user, String message) {
         this.user = user;
-        this.errorMessage = errorMessage;
+        this.message = message;
     }
 }

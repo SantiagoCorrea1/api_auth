@@ -90,6 +90,8 @@ public class UserService implements UserInterface, UserDetailsService {
     public User findByEmail(String email) {
         return userRepository.findFirstByEmail(email).orElse(null);
     }
+    public User findByPhoneNumber(String number){ return userRepository.findByPhoneNumber(number).orElse(null);}
+    public User findByIdentificationNumber(String id){ return userRepository.findByIdentificationNumber(id).orElse(null);}
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
