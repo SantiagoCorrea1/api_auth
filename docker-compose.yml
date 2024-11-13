@@ -1,4 +1,4 @@
-name: nombre_contenedor
+name: modulo-07
 services:
   springboot-app:
   build:
