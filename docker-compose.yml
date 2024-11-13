@@ -16,16 +16,6 @@ services:
       interval: 10s
       retries: 3
 
-    api_auth:
-      build: .
-      ports:
-        - "8080:8080"
-      depends_on:
-        - postgresql
-      environment:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/auth
-        SPRING_DATASOURCE_USERNAME: postgres
-        SPRING_DATASOURCE_PASSWORD: root
   springboot-app:
     build:
       context: .
