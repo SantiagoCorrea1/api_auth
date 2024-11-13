@@ -1,13 +1,13 @@
 name: modulo-07
 services:
   springboot-app:
-  build:
-  context: .
-  dockerfile: Dockerfile
-  ports:
-    - "8007:8007"
-  networks:
-    - my_bridge_network
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8007:8007"
+    networks:
+      - my_bridge_network
 networks:
   my_bridge_network:
-  external: true
+    external: true
