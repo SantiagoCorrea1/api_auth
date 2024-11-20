@@ -37,7 +37,7 @@ public class JwtUtil {
     public String generateToken(String userName, long id, Long role){
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
-        claims.put("rol", role);
+        claims.put("role", role);
         return createToken(claims, userName);
     }
 
@@ -71,4 +71,20 @@ public class JwtUtil {
         final String userName = extractUsername(token);
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
+
+    public Long extractRoleFromToken(String token) {
+        // Parsear el token y obtener los claims
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody();
+
+
+        return claims.get("role", Long.class);
+    }
+
+    public String extractRole(String token) {
+        return extractClaims(token, claims -> claims.get("role", String.class));
+    }
+
 }

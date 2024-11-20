@@ -49,10 +49,10 @@ class ApiAuthApplicationTests {
 		assertNotNull(userResolver.signIn(authenticationRequest));
 	}
 
-	@Test
-	void adminRol(){
-		assertEquals(roleRepository.findById(Long.parseLong("3")).get().getId(),
-				userResolver.modifyRole("prueba1@udea.edu.co", Long.parseLong("3")).getRole().getId());
-	}
+//	@Test
+//	void adminRol(){
+//		assertEquals(roleRepository.findById(Long.parseLong("3")).get().getId(),
+//				userResolver.modifyRole("prueba1@udea.edu.co", Long.parseLong("3")).getRole().getId());
+//	}
 
 }

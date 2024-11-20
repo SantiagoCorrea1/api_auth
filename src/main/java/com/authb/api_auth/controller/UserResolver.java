@@ -21,7 +21,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -133,13 +135,18 @@ public class UserResolver implements GraphQLMutationResolver {
 
     @PermitAll
     @MutationMapping
-    public User modifyRole(@Argument String email,
+    public SignUpResponse modifyRole(@Argument String email,
                            @Argument Long roleId) {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        String roleUser = userService.findByEmail(userEmail).getRole().getId().toString();
+        if(roleUser.equals("3")){
+            User user = userService.findByEmail(email);
+            Role role = com.authb.api_auth.service.RolService.findById(roleId);
+            user.setRole(role);
+            return new SignUpResponse(userService.updateUser(user), "the role has been updated successfully");
+        }
+        return new SignUpResponse(null , "You are unauthorized");
 
-        User user = userService.findByEmail(email);
-        Role role = com.authb.api_auth.service.RolService.findById(roleId);
-        user.setRole(role);
-        return userService.updateUser(user);
     }
 
 
